@@ -1,8 +1,13 @@
+
 "use client";
 import Image from "next/image";
 import Header from "@/components/VideoPlayer";
 import { useState } from "react";
 import TypingEffect from "@/components/Typingeffect";
+import Link from 'next/link';
+
+
+
 
 const carBrands = [
   {
@@ -78,8 +83,8 @@ const carBrands = [
     url: "https://www.nissan.com",
   },
 ];
-
 export default function Home() {
+
   const [searchTerm, setSearchTerm] = useState("");
 
   const filteredBrands = carBrands.filter((brand) =>
@@ -93,6 +98,7 @@ export default function Home() {
     >
       <div className="rainbow-border display border-amber-50 rounded-lg p-4 mt-73 text-center w-1/2">
         <TypingEffect />
+        
         <h1 className="text-fuchsia-700"> Hier zur Automarken Übersicht..</h1>
         <input
           type="text"
