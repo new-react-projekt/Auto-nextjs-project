@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping, faHomeUser } from "@fortawesome/free-solid-svg-icons";
+import { faHomeUser } from "@fortawesome/free-solid-svg-icons";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -79,4 +79,3 @@ export default function Navbar() {
     </nav>
   );
 }
-
