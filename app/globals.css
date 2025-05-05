@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ebe7e7;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+.videoitem {
+  position: absolute;
+  top: 35%;
+  left: 5%;
+}
+.videoitem h1 {
+  font-size: 3rem;
+  color: #ededed;
+}
+
+.videoitem p {
+  font-size: 1.5rem;
+  color: #ededed;
+  top: 50rem;
+}
+
+@keyframes rainbowBorder {
+  0% {
+    border-image-source: linear-gradient(45deg white, blue, white);
+  }
+  50% {
+    border-image-source: linear-gradient(135deg, blue, white);
+  }
+  100% {
+    border-image-source: linear-gradient(45deg, white);
+  }
+}
+
+.rainbow-border {
+  border: 7px solid transparent;
+  border-image-slice: 1;
+  animation: rainbowBorder 5s linear infinite;
+  border-image-source: linear-gradient(45deg, blue, indigo, violet);
+  border-radius: 12px;
+}
