@@ -98,9 +98,7 @@ export default function Home() {
     >
       <div className="rainbow-border display border-amber-50 rounded-lg p-4 mt-73 text-center w-1/2">
         <TypingEffect />
-        <Link href="/productfilter" className="text-blue-600 underline">
-        Search Product
-      </Link>
+        
         <h1 className="text-fuchsia-700"> Hier zur Automarken Übersicht..</h1>
         <input
           type="text"

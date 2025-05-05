@@ -13,7 +13,7 @@ export default function Navbar() {
     { label: "Services", href: "/service", description: "Unsere Leistungen" },
     {
       label: "Fahrzeuge",
-      href: "/about",
+      href: "/productfilter",
       description: "Unsere Fahrzeugangebote",
     },
     { label: "Kontakt", href: "/contact", description: "Kontaktiere uns" },
@@ -24,16 +24,16 @@ export default function Navbar() {
       icon: faHomeUser,
       description: "Dein Profil",
     },
-    {
-      label: "Warenkorb",
-      href: "/shoppingcart",
-      icon: faCartShopping,
-      description: "Zum Warenkorb",
-    },
+    // {
+    //   label: "Warenkorb",
+    //   href: "/shoppingcart",
+    //   icon: faCartShopping,
+    //   description: "Zum Warenkorb",
+    // },
   ];
 
   return (
-    <nav className="absolute top-80 left-0 w-full bg-transparent text-white p-4">
+    <nav className="relative -top-36 left-0 w-full bg-transparent text-white p-4">
       <div className="container mx-auto flex justify-between items-start">
         <div className="relative -right-5 -top-10">
           <img
