@@ -43,9 +43,7 @@ export default function Footer() {
                 <Link href="/careers">Careers</Link>
               </li>
               <li>
-                <Link href="/rateus" target="_blank">
-                  Rate Us
-                </Link>
+                <Link href="/rateus">Rate Us</Link>
               </li>
               <li>
                 <Link href="https://cars.mclaren.press/" target="_blank">
