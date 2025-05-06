@@ -15,7 +15,7 @@ const VideoPlayer = () => {
         </video>
         <section className="videoitem">
           <h2 className=" text-amber-200 text-5xl font-bold flex flex-col items-center justify-center h-full ">
-            we provide a <br /> Reliable & New Car for Sale
+            We provide a <br /> Reliable & New Car for Sale
           </h2>
         </section>
       </div>

@@ -2,7 +2,7 @@ import React from "react";
 
 export default function ContactForm() {
   return (
-    <div>
+    <div className="max-w-6xl mx-auto p-6 -mt-52">
       <form className="max-w-md mx-auto mt-10">
         <h2 className="text-2xl font-bold mb-4">Contact Seller</h2>
         <div className="mb-4">
