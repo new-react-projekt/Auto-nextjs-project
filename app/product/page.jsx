@@ -1,27 +1,59 @@
-"use client";
-import products from "../../data/cars_data.json";
-import Image from "next/image";
+'use client';
+import { useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import products from '../../data/cars_data.json';
 
-export default function ProductsPage() {
-  return (
-    <div className="max-w-7xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-6">All Cars</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {products.map((product) => (
-          <div key={product.id} className="rounded-xl shadow-md p-4">
-            <Image
-              src={product.image}
-              alt={product.name}
-              width={400}
-              height={250}
-              className="rounded-md"
-            />
-            <h2 className="text-xl font-semibold mt-4">{product.name}</h2>
-            <p className="text-gray-700">{product.description}</p>
-            <p className="text-lg font-bold mt-2">${product.price}</p>
-          </div>
-        ))}
+
+export default function ProductFilter() {
+    const [selectedBrand, setSelectedBrand] = useState('');
+
+    // Get all unique brands from products
+    const brands = [...new Set(products.map((p) => p.brand))];
+  
+    // Filter products based on selected brand
+    const filteredProducts = selectedBrand
+      ? products.filter((p) => p.brand === selectedBrand)
+      : products;
+  
+    return (
+      <div className="max-w-6xl mx-auto p-6 -mt-36">
+        <div className="mb-6">
+  <label className="block text-lg font-medium mb-2">Choose a Brand:</label>
+  <select
+    value={selectedBrand}
+    onChange={(e) => setSelectedBrand(e.target.value)}
+    className="w-full border border-gray-300 rounded-md p-2"
+  >
+    <option value="">All Brands</option>
+    {brands.map((brand, index) => (
+      <option key={`${brand}-${index}`} value={brand}>
+        {brand}
+      </option>
+    ))}
+  </select>
+</div>
+  
+<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+  {filteredProducts.map((product) => (
+    <Link key={product.id} href={`/product/${product.id}`}>
+      <div className="border rounded-xl shadow-md p-4 h-[350px]">
+      {Array.isArray(product.image) && product.image[0] && (
+          <Image
+            src={product.image[0]} // Use the first image from the array
+            alt={product.name}
+            width={400}
+            height={250}
+            className="rounded-md h-[150px]"
+          />
+        )}
+        <h2 className="text-xl font-semibold mt-4">{product.name}</h2>
+        <p className="text-gray-700">{product.description}</p>
+        <p className="text-xl font-bold mt-2">€ {product.price.toLocaleString()}</p>
       </div>
-    </div>
-  );
-}
+    </Link>
+  ))}
+</div>
+      </div>
+    );
+  }
