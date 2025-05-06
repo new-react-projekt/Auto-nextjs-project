@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 function TypingEffect({
-  text = " Herzlich willkommen auf unserer Seite! Hier finden Sie eine Übersicht Über Verschiedene Automarken.",
+  text = " Welcome to our website! Here you will find an overview of various car brands.",
 }) {
   const [displayedText, setDisplayedText] = useState("");
   const [index, setIndex] = useState(0);

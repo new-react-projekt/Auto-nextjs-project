@@ -9,6 +9,7 @@ import Link from 'next/link';
 
 
 
+
 const carBrands = [
   {
     name: "Audi",
@@ -94,15 +95,15 @@ export default function Home() {
   return (
     <div
       style={{ padding: "3rem", fontFamily: "Arial, sans-serif" }}
-      className="flex flex-col items-center justify-center"
+      className="flex flex-col items-center justify-center -mt-112"
     >
-      <div className="rainbow-border display border-amber-50 rounded-lg p-4 mt-73 text-center w-1/2">
+      <div className="rainbow-border display border-amber-50 rounded-lg p-4 mt-90 text-center w-1/2">
         <TypingEffect />
         
-        <h1 className="text-fuchsia-700"> Hier zur Automarken Übersicht..</h1>
+        <h1 className="text-fuchsia-700"> Here to the car brands overview..</h1>
         <input
           type="text"
-          placeholder=" Suche nach Auto Marke..."
+          placeholder=" Search by car brand..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           style={{
@@ -156,7 +157,7 @@ export default function Home() {
             </div>
           ))
         ) : (
-          <p>Keine Marke gefunden</p>
+          <p>No brand found</p>
         )}
       </div>
     </div>

@@ -1,9 +1,10 @@
 "use client";
-import { useState } from "react";
+import { useState, useContext, useMemo } from "react";
 import { use } from "react";
 import products from "../../../data/cars_data.json";
 import Link from "next/link";
 import EmblaCarousel from "@/components/Carousel";
+import { FavoritesContext } from "@/app/favoritecontext/page";
 import {
   Gauge,
   Cog,
@@ -23,13 +24,19 @@ export default function ProductDetail({ params }) {
 
   const product = products.find((p) => p.id.toString() === id);
 
+  const { favorites, addFavorite} = useContext(FavoritesContext);
+
   if (!product) return <div className="p-6">Car not found.</div>;
+
+  const isFavorite = useMemo(() => {
+    return favorites.some(fav => fav.id === product.id);
+  }, [favorites, product.id]);
 
   return (
     <>
-      <div className="max-w-6xl mx-auto p-6 border-1 border-gray-200 rounded-lg shadow-md">
+      <div className="max-w-6xl mx-auto p-6 border-1 border-gray-200 rounded-lg shadow-md -mt-30">
         <Link
-          href="/productfilter"
+          href="/product"
           className="flex items-center text-blue-600 space-x-1 mb-8"
         >
           <ArrowLeft className="w-5 h-5" />
@@ -48,27 +55,38 @@ export default function ProductDetail({ params }) {
             <div>No images available</div>
           )}
           <div className="flex flex-col justify-between">
-            <div className="flex items-center text-blue-500 space-x-1 mb-4 w-90">
-              <Star className="w-5 h-5 mb-2" />
-              <span>Add to list</span>
-            </div>
+          <div
+      onClick={() => {
+        console.log('Adding to favorites:', product);
+        addFavorite(product);
+      }}
+      className="flex items-center text-blue-500 space-x-1 mb-4 w-90 cursor-pointer"
+    >
+      <Star
+        className={`w-5 h-5 mb-1 ${
+          isFavorite ? 'fill-blue-500 text-blue-500' : ''
+        }`}
+        fill={isFavorite ? 'currentColor' : 'none'}
+      />
+      <span>{isFavorite ? 'Added to the list' : 'Add to list'}</span>
+    </div>
             <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
             <p className="text-gray-700 mb-8 border-b-1 pb-8 border-gray-200">
               {product.description}
             </p>
-            <p className="text-xl font-bold mb-6 border-b-1 pb-8 border-gray-200">
-              € {product.price}
+            <p className="text-2xl font-bold mb-6 border-b-1 pb-8 border-gray-200">
+              € {product.price.toLocaleString()}
             </p>
             <div className="flex flex-col md:flex-row items-start justify-center gap-4">
             <Link href="/contact">
-  <button className="bg-blue-500 p-2 rounded-lg shadow-md text-xs text-white">
+  <button className="bg-blue-500 hover:bg-blue-400 cursor-pointer p-2 rounded-lg shadow-md text-xs text-white">
     Contact Seller
   </button>
 </Link>
 
               <button
                 onClick={() => setShowPhone(true)}
-                className="bg-blue-500 p-2 rounded-lg shadow-md text-xs text-white"
+                className="bg-blue-500 hover:bg-blue-400 cursor-pointer p-2 rounded-lg shadow-md text-xs text-white"
               >
                 {showPhone ? product.sellerPhone : "Show Phone Number"}
               </button>
