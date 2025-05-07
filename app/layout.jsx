@@ -20,10 +20,10 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <FavoritesProvider>
-        <VideoPlayer />
-        <Navbar />
-        {children}
-        <Footer />
+          <VideoPlayer />
+          <Navbar />
+          {children}
+          <Footer />
         </FavoritesProvider>
         <script
           src="https://kit.fontawesome.com/94a0c02d39.js"

@@ -70,7 +70,7 @@ export default function Footer() {
             <hr className="my-2 border-gray-500" />
             <ul>
               <li>
-                <Link href="/imprint">Imprint</Link>
+                <Link href="/impressum">Imprint</Link>
               </li>
               <li>
                 <Link href="/policy">Privacy Policy</Link>
