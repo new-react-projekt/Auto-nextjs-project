@@ -7,10 +7,10 @@ import { useRouter } from "next/navigation";
 export default function Login() {
   const [form, setForm] = useState({ username: "", password: "" });
   const router = useRouter();
-  // userouter sayfayı yönlendirmek için kullanıldı.
+
   // Userouter wird zum Umleiten der Seite verwendet.
 
-  // Sayfa ilk yüklendiğinde varsayılan kullanıcıyı ekle
+
   // Standardbenutzer beim ersten Laden der Seite hinzufügen
   useEffect(() => {
     const users = JSON.parse(localStorage.getItem("users") || "[]");
@@ -24,22 +24,22 @@ export default function Login() {
       localStorage.setItem("users", JSON.stringify(users));
     }
   }, []);
-  // Eğer "user" adında bir kullanıcı yoksa, "user" ve "1234" şifresiyle varsayılan kullanıcı eklenir.
+
   // Wenn kein Benutzer mit dem Namen „Benutzer“ vorhanden ist, wird ein Standardbenutzer mit „Benutzer“ und dem Kennwort „1234“ hinzugefügt.
 
-  // Form inputlarını güncelle
+
   // Formulareingaben aktualisieren
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // Giriş kontrolü
+
   const handleLogin = (e) => {
     e.preventDefault();
-    // form bir kere gönderilsin. sürekli sayfa yenilenmesin diye preventDefault kullanıldı.
+
     // Das Formular sollte einmal gesendet werden. preventDefault wurde verwendet, um zu verhindern, dass die Seite ständig aktualisiert wird.
     const users = JSON.parse(localStorage.getItem("users") || "[]");
-    //  localstroge 'dan veriyi al
+
     // Holen Sie sich die Daten von localstroge
 
     const user = users.find(
@@ -48,14 +48,18 @@ export default function Login() {
 
     if (user) {
       localStorage.setItem("loggedInUser", JSON.stringify(user));
-      router.push("/"); // Başarılı girişte anasayfaya yönlendir
+      alert("Login successful!");
+      router.push("/product");
     } else {
       alert("Invalid username or password.");
     }
+     // Emit a custom event to notify other components
+     window.dispatchEvent(new Event("loginStateChange"));
+     
   };
 
   return (
-    <div className="h-[33rem] flex items-center justify-center bg-gray-100 px-4">
+    <div className="h-[33rem] flex items-center justify-center bg-gray-100 px-4 -mt-42">
       <div className="w-full max-w-md bg-white p-8 rounded shadow">
         <h2 className="text-2xl font-semibold text-center mb-6">Login</h2>
 

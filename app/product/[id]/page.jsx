@@ -1,7 +1,7 @@
 "use client";
 // import { useState } from "react";
 import { PDFDocument, rgb } from "pdf-lib";
-
+import { useRouter } from "next/navigation";
 import { useState, useContext, useMemo } from "react";
 import { use } from "react";
 import products from "../../../data/cars_data.json";
@@ -28,6 +28,18 @@ export default function ProductDetail({ params }) {
 
   const { favorites, addFavorite } = useContext(FavoritesContext);
 
+  const isLoggedIn = !!localStorage.getItem("loggedInUser");
+  const router = useRouter();
+
+  const handleAddToFavorites = () => {
+    if (!isLoggedIn) {
+      alert("You need to log in to add products to your favorites.");
+      router.push("/login"); // Redirect to login page
+      return;
+    }
+    addFavorite(product); // Add product to favorites
+    alert("Product added to favorites!");
+  }
   if (!product) return <div className="p-6">Car not found.</div>;
 
   // Funktion zum Erstellen der PDF
@@ -125,7 +137,7 @@ export default function ProductDetail({ params }) {
 
   return (
     <>
-      <div className="max-w-6xl mx-auto p-6 border-1 border-gray-200 rounded-lg shadow-md -mt-30">
+      <div className="max-w-6xl mx-auto p-6 border-1 border-gray-200 rounded-lg shadow-md -mt-16">
         <Link
           href="/product"
           className="flex items-center text-blue-600 space-x-1 mb-8"
@@ -146,13 +158,13 @@ export default function ProductDetail({ params }) {
             <div>No images available</div>
           )}
           <div className="flex flex-col justify-between">
-            <div
-              onClick={() => {
-                console.log("Adding to favorites:", product);
-                addFavorite(product);
-              }}
-              className="flex items-center text-blue-500 space-x-1 mb-4 w-90 cursor-pointer"
-            >
+          <div
+  onClick={() => {
+    console.log("Adding to favorites:", product);
+    handleAddToFavorites(product); // or just addFavorite(product);
+  }}
+  className="flex items-center text-blue-500 space-x-1 mb-4 w-90 cursor-pointer"
+>
               <Star
                 className={`w-5 h-5 mb-1 ${
                   isFavorite ? "fill-blue-500 text-blue-500" : ""

@@ -1,6 +1,6 @@
 "use client";
 
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Link from "next/link";
 import EmblaCarousel from "@/components/Carousel";
 import { Trash2 } from "lucide-react";
@@ -8,6 +8,7 @@ import { FavoritesContext } from "../favoritecontext/page";
 
 export default function FavoritesPage() {
   const { favorites, removeFavorite } = useContext(FavoritesContext);
+    const [showPhone, setShowPhone] = useState(false);
 
   if (favorites.length === 0) {
     return (
@@ -45,6 +46,19 @@ export default function FavoritesPage() {
             <p className="text-2xl font-bold mb-6 border-b-1 pb-8 border-gray-200">
               € {product.price.toLocaleString()}
             </p>
+            <div>
+            <Link href="/contact">
+                <button className="bg-blue-500 hover:bg-blue-400 cursor-pointer p-2 rounded-lg shadow-md text-xs text-white">
+                  Contact Seller
+                </button>
+              </Link>
+
+              <button
+                onClick={() => setShowPhone(true)}
+                className="bg-blue-500 hover:bg-blue-400 cursor-pointer p-2 rounded-lg shadow-md text-xs text-white"
+              >
+                {showPhone ? product.sellerPhone : "Show Phone Number"}
+              </button>
               <button
                 onClick={() => removeFavorite(product.id)}
                 className="mt-2 text-red-500 hover:text-red-700 cursor-pointer flex items-center"
@@ -52,6 +66,7 @@ export default function FavoritesPage() {
                 <Trash2 className="w-5 h-5 mr-1" />
                 Remove
               </button>
+              </div>
             </div>
           </li>
         ))}
