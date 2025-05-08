@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import {ArrowUp} from "lucide-react";
 import products from '../../data/cars_data.json';
 
 
@@ -17,9 +18,9 @@ export default function ProductFilter() {
       : products;
   
     return (
-      <div className="max-w-6xl mx-auto p-6 -mt-36">
+      <div className="max-w-6xl mx-auto p-6 -mt-22">
         <div className="mb-6">
-  <label className="block text-lg font-medium mb-2">Choose a Brand:</label>
+  <label className="block text-lg font-medium mb-2 text-blue-950">Choose a Brand:</label>
   <select
     value={selectedBrand}
     onChange={(e) => setSelectedBrand(e.target.value)}
@@ -54,6 +55,13 @@ export default function ProductFilter() {
     </Link>
   ))}
 </div>
+<Link
+          href="/product"
+          className="flex items-center justify-center text-blue-600 space-x-1 my-8"
+        >
+          <ArrowUp className="w-5 h-5" />
+          <span>Back to Top</span>
+        </Link>
       </div>
     );
   }

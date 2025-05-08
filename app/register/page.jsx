@@ -13,7 +13,7 @@ export default function Register() {
     firma: "",
   });
 
-  const [message, setMessage] = useState(""); // Hata / Başarı mesajı
+  const [message, setMessage] = useState(""); 
   const router = useRouter();
 
   const handleChange = (e) => {
@@ -23,7 +23,7 @@ export default function Register() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Boş alan kontrolü
+
     if (
       !form.username ||
       !form.email ||
@@ -36,7 +36,7 @@ export default function Register() {
       return;
     }
 
-    // Şifre uyuşmazlığı kontrolü
+
     if (form.password !== form.passwordConfirm) {
       setMessage("Passwords do not match.");
       return;
@@ -77,7 +77,7 @@ export default function Register() {
         "Registration successful! You are being directed to the login page..."
       );
 
-      // Kısa bir gecikme sonrası yönlendirme
+
       setTimeout(() => {
         router.push("/login");
       }, 1500);
@@ -88,7 +88,7 @@ export default function Register() {
   };
 
   return (
-    <div className="h-[45rem] flex items-center justify-center bg-gray-100 px-4">
+    <div className="h-[45rem] flex items-center justify-center bg-gray-100 px-4 -mt-36">
       <div className="w-full max-w-md bg-white p-8 rounded shadow">
         <h2 className="text-2xl font-semibold text-center mb-6">Register</h2>
 
